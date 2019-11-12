@@ -1,0 +1,71 @@
+<h2> Real time streaming</h2>
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <div>
+    <input type="text" value="Field : Tweet" disabled >
+    <label>Operator:</label>
+    <select formControlName="operatorTweet">
+      <option value='equals' selected [ngValue]="equals">equals</option>
+      <option value="contains">contains</option>
+    </select>
+    <label>Values:</label>
+    <input type="text" formControlName="fieldTweetValues" />
+  </div>
+
+  <div>
+    <input type="text" value="Field : User" disabled >
+    <label>Operator:</label>
+    <select formControlName="operatorUser">
+      <option value='equals' selected [ngValue]="equals">equals</option>
+      <option value="contains">contains</option>
+    </select>
+    <label>Values:</label>
+    <input type="text" formControlName="fieldUserValue" />
+  </div>
+
+  <div>
+    <input type="text" value="Field : verified" disabled>
+    <label>Operator:</label>
+    <select formControlName="operatorVerified">
+      <option value='equals' [ngValue]="equals">equals</option>
+    </select>
+    <label>Values:</label>
+    <input type="text" formControlName="fieldVerifiedValue" />
+  </div>
+
+  <div>
+    <input type="text" value="Field : Language" disabled>
+    <label>Operator:</label>
+    <select formControlName="operatorLang">
+      <option value='equals' selected [ngValue]="equals">equals</option>
+      <option value="contains">contains</option>
+    </select>
+
+    <label>Values:</label>
+    <input type="text" formControlName="fieldLanguageValue" />
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+
+  </div>
+
+
+
+</form>
+<div *ngIf="isNotLoaded" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+<div class="container-tweeter" *ngFor="let hero of tweets">
+  <div class="bubble-container">
+    <div class="bubble">
+      <span class="avatar">
+        <img src="http://www.croop.cl/UI/twitter/images/russel.jpg">
+      </span>
+      <h3>@{{hero.user}}
+        <span *ngIf="hero.verified">&#10003;</span>
+      </h3>
+      <span class="all-tweet">
+        | {{hero.tweet}}
+      </span>
+      <span class="aside">
+        | Retweets: {{hero.retweet_count}}
+        | Language: {{hero.lang}}
+      </span>
+    </div>
+  </div>
+</div>
